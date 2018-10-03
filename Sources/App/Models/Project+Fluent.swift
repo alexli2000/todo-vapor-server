@@ -19,3 +19,11 @@ extension Project: Content { }
 
 /// Allows it to be used as a dynamic parameter in route definitions.
 extension Project: Parameter { }
+
+extension Project {
+
+	// The tasks in this project
+	var tasks: Children<Project, Task> {
+		return children(\.projectID)
+	}
+}

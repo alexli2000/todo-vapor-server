@@ -22,13 +22,16 @@ extension Task: Parameter { }
 
 extension Task {
 
+	// The creator of this task
 	var creator: Parent<Task, User> {
 		return parent(\.creatorID)
 	}
-}
 
-extension Task {
+	var project: Parent<Task, Project> {
+		return parent(\.projectID)
+	}
 
+	// The subtasks belonging to this task
 	var subtasks: Children<Task, Subtask> {
 		return children(\.taskID)
 	}

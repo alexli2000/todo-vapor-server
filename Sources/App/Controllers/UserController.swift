@@ -31,7 +31,7 @@ struct UserResponse: Content {
 	/// Not optional since we only return users that exist in the DB.
 	var id: UUID
 
-	/// User's full name.
+	/// User's username.
 	var username: String
 
 	/// User's email address.
