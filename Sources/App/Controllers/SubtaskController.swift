@@ -1,7 +1,7 @@
 import Vapor
 
-/// Controls basic CRUD operations on `Todo`s.
-final class TodoController {
+/// Controls basic CRUD operations on `Subtask`s.
+final class SubtaskController {
     /// Returns a list of all `Todo`s.
     func index(_ req: Request) throws -> Future<[Subtask]> {
         return Subtask.query(on: req).all()

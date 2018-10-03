@@ -13,19 +13,19 @@ struct Comment: Codable, Hashable {
 	var id: UUID?
 	var createdOn: Date
 	var text: String
-	var fromUser: User
-	var onSubtask: Subtask
+	var fromUserID: User.ID
+	var onSubtaskID: Subtask.ID
 
 	init(id: UUID? = nil,
 		 createdOn: Date = Date(),
 		 text: String,
-		 fromUser: User,
-		 onSubtask: Subtask)
+		 fromUserID: User.ID,
+		 onSubtaskID: Subtask.ID)
 	{
 		self.id = id
 		self.createdOn = createdOn
 		self.text = text
-		self.fromUser = fromUser
-		self.onSubtask = onSubtask
+		self.fromUserID = fromUserID
+		self.onSubtaskID = onSubtaskID
 	}
 }

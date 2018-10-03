@@ -13,44 +13,44 @@ struct Task: Codable, Hashable {
 	var id: UUID?
 	var title: String
 	var createdOn: Date
-	var creator: User
+	var creatorID: User.ID
 	var dueDate: Date?
 	var progressStatus: TaskProgressStatus
-	var subtasks: [Subtask]
+	var subtaskIDs: [Subtask.ID]
 
-	var comments: [Comment]
+	var commentIDs: [Comment.ID]
 
-	init(id: UUID? = nil,
+	init(id: ID? = nil,
 		 title: String,
 		 createdOn: Date,
-		 creator: User,
+		 creatorID: User.ID,
 		 dueDate: Date?,
 		 progressStatus: TaskProgressStatus = .toDo,
-		 subtasks: [Subtask] = [],
-		 comments: [Comment] = [])
+		 subtaskIDs: [Subtask.ID] = [],
+		 commentIDs: [Comment.ID] = [])
 	{
 		self.id = id
 		self.title = title
 		self.createdOn = createdOn
-		self.creator = creator
+		self.creatorID = creatorID
 		self.dueDate = dueDate
 		self.progressStatus = progressStatus
-		self.subtasks = subtasks
-		self.comments = comments
+		self.subtaskIDs = subtaskIDs
+		self.commentIDs = commentIDs
 	}
 }
 
 extension Task {
 
-	var progress: Double {
-		guard !subtasks.isEmpty else {
-			return 0
-		}
-
-		return Double(subtasks.filter { $0.isComplete }.count) / Double(subtasks.count)
-	}
-
-	var isComplete: Bool {
-		return subtasks.allSatisfy { $0.isComplete }
-	}
+//	var progress: Double {
+//		guard !subtaskIDs.isEmpty else {
+//			return 0
+//		}
+//
+//		return Double(subtaskIDs.filter { $0.isComplete }.count) / Double(subtasks.count)
+//	}
+//
+//	var isComplete: Bool {
+//		return subtaskIDs.allSatisfy { $0.isComplete }
+//	}
 }

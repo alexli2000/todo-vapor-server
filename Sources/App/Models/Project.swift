@@ -13,22 +13,22 @@ struct Project: Codable, Hashable {
 	var id: UUID?
 	var createdOn: Date
 	var archiveState: ArchiveState
-	var access: [User: AccessControl]
-	var tasks: [Task]
+	var access: [User.ID: AccessControl]
+	var taskIDs: [Task.ID]
 	var imageURL: String?
 
 	init(id: UUID? = nil,
 		 createdOn: Date = Date(),
-		 createdBy creator: User,
+		 createdBy creatorID: User.ID,
 		 archiveState: ArchiveState = .notArchived,
-		 tasks: [Task] = [],
+		 taskIDs: [Task.ID] = [],
 		 imageURL: String? = nil)
 	{
 		self.id = id
 		self.createdOn = createdOn
 		self.archiveState = archiveState
-		self.tasks = tasks
-		self.access = [creator: .readWrite]
+		self.taskIDs = taskIDs
+		self.access = [creatorID: .readWrite]
 		self.imageURL = imageURL
 	}
 }
