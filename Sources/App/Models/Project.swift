@@ -12,8 +12,8 @@ struct Project: Codable, Hashable {
 
 	var id: UUID?
 	var createdOn: Date
-	var archiveState: ArchiveState
-	var access: [User.ID: AccessControl]
+	var archiveState: ArchiveState.RawValue
+	var access: [User.ID: AccessControl.RawValue]
 	var taskIDs: [Task.ID]
 	var imageURL: String?
 
@@ -26,9 +26,9 @@ struct Project: Codable, Hashable {
 	{
 		self.id = id
 		self.createdOn = createdOn
-		self.archiveState = archiveState
+		self.archiveState = archiveState.rawValue
 		self.taskIDs = taskIDs
-		self.access = [creatorID: .readWrite]
+		self.access = [creatorID: AccessControl.readWrite.rawValue]
 		self.imageURL = imageURL
 	}
 }

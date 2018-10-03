@@ -21,23 +21,31 @@ extension User: Content { }
 /// Allows it to be used as a dynamic parameter in route definitions.
 extension User: Parameter { }
 
-//extension User: TokenAuthenticatable {
-//	/// See `TokenAuthenticatable`.
-//	typealias TokenType = UserToken
-//}
+extension User: TokenAuthenticatable {
+	/// See `TokenAuthenticatable`.
+	typealias TokenType = UserToken
+}
 
 /// Allows users to be verified by basic / password auth middleware.
-//extension User: PasswordAuthenticatable {
-//	/// See `PasswordAuthenticatable`.
-//	static var usernameKey: WritableKeyPath<User, String> {
-//		return \.email
-//	}
-//
-//	/// See `PasswordAuthenticatable`.
-//	static var passwordKey: WritableKeyPath<User, String> {
-//		return \.passwordHash
-//	}
-//}
+extension User: PasswordAuthenticatable {
+	/// See `PasswordAuthenticatable`.
+	static var usernameKey: WritableKeyPath<User, String> {
+		return \.email
+	}
+
+	/// See `PasswordAuthenticatable`.
+	static var passwordKey: WritableKeyPath<User, String> {
+		return \.passwordHash
+	}
+}
+
+extension User {
+
+	/// Fluent relation to the tokens this user owns.
+	var user: Children<User, UserToken> {
+		return children(\.userID)
+	}
+}
 
 extension User {
 

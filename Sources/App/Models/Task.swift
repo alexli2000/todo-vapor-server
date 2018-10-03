@@ -15,7 +15,7 @@ struct Task: Codable, Hashable {
 	var createdOn: Date
 	var creatorID: User.ID
 	var dueDate: Date?
-	var progressStatus: TaskProgressStatus
+	var progressStatus: TaskProgressStatus.RawValue
 	var subtaskIDs: [Subtask.ID]
 
 	var commentIDs: [Comment.ID]
@@ -34,7 +34,7 @@ struct Task: Codable, Hashable {
 		self.createdOn = createdOn
 		self.creatorID = creatorID
 		self.dueDate = dueDate
-		self.progressStatus = progressStatus
+		self.progressStatus = progressStatus.rawValue
 		self.subtaskIDs = subtaskIDs
 		self.commentIDs = commentIDs
 	}
