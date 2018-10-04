@@ -1,10 +1,12 @@
 import FluentSQLite
 import Vapor
+import Authentication
 
 /// Called before your application initializes.
 public func configure(_ config: inout Config, _ env: inout Environment, _ services: inout Services) throws {
     /// Register providers first
     try services.register(FluentSQLiteProvider())
+	try services.register(AuthenticationProvider())
 
     /// Register routes to the router
     let router = EngineRouter.default()
@@ -28,6 +30,13 @@ public func configure(_ config: inout Config, _ env: inout Environment, _ servic
     /// Configure migrations
     var migrations = MigrationConfig()
     migrations.add(model: Subtask.self, database: .sqlite)
+	migrations.add(model: Task.self, database: .sqlite)
+	migrations.add(model: Project.self, database: .sqlite)
+	migrations.add(model: User.self, database: .sqlite)
+	migrations.add(model: Comment.self, database: .sqlite)
+	migrations.add(model: ActivityItem.self, database: .sqlite)
+	migrations.add(model: UserToken.self, database: .sqlite)
+
     services.register(migrations)
 
 	// Create a new NIO websocket server

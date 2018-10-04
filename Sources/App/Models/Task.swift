@@ -13,44 +13,25 @@ struct Task: Codable, Hashable {
 	var id: UUID?
 	var title: String
 	var createdOn: Date
-	var creator: User
+	var creatorID: User.ID
+//	var projectID: Project.ID
 	var dueDate: Date?
-	var progressStatus: TaskProgressStatus
-	var subtasks: [Subtask]
+	var progressStatus: TaskProgressStatus.RawValue
 
-	var comments: [Comment]
-
-	init(id: UUID? = nil,
+	init(id: ID? = nil,
 		 title: String,
 		 createdOn: Date,
-		 creator: User,
+		 creatorID: User.ID,
+//		 projectID: Project.ID,
 		 dueDate: Date?,
-		 progressStatus: TaskProgressStatus = .toDo,
-		 subtasks: [Subtask] = [],
-		 comments: [Comment] = [])
+		 progressStatus: TaskProgressStatus = .toDo)
 	{
 		self.id = id
 		self.title = title
 		self.createdOn = createdOn
-		self.creator = creator
+		self.creatorID = creatorID
+//		self.projectID = projectID
 		self.dueDate = dueDate
-		self.progressStatus = progressStatus
-		self.subtasks = subtasks
-		self.comments = comments
-	}
-}
-
-extension Task {
-
-	var progress: Double {
-		guard !subtasks.isEmpty else {
-			return 0
-		}
-
-		return Double(subtasks.filter { $0.isComplete }.count) / Double(subtasks.count)
-	}
-
-	var isComplete: Bool {
-		return subtasks.allSatisfy { $0.isComplete }
+		self.progressStatus = progressStatus.rawValue
 	}
 }

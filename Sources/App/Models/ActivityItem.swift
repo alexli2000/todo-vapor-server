@@ -12,7 +12,7 @@ struct ActivityItem: Codable, Hashable {
 
 	var id: UUID?
 	var createdOn: Date
-	var activityType: ActivityType
+	var activityType: ActivityType.RawValue
 	var itemID: UUID
 
 	init(id: UUID? = nil,
@@ -22,7 +22,7 @@ struct ActivityItem: Codable, Hashable {
 	{
 		self.id = id
 		self.createdOn = createdOn
-		self.activityType = activityType
+		self.activityType = activityType.rawValue
 		self.itemID = itemID
 	}
 }

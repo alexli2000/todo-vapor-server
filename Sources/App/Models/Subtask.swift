@@ -15,17 +15,20 @@ struct Subtask: Codable, Hashable {
 	var createdOn: Date
 	var dueDate: Date?
 	var isComplete: Bool
+	var taskID: Task.ID
 
 	init(id: UUID? = nil,
 		 title: String,
 		 createdOn: Date = Date(),
 		 dueDate: Date? = nil,
-		 isComplete: Bool = false)
+		 isComplete: Bool = false,
+		 taskID: Task.ID)
 	{
 		self.id = id
 		self.title = title
 		self.createdOn = createdOn
 		self.dueDate = dueDate
 		self.isComplete = isComplete
+		self.taskID = taskID
 	}
 }
