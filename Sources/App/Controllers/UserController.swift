@@ -59,11 +59,18 @@ final class UserController {
 				throw Abort(.badRequest, reason: "Password and verification must match.")
 			}
 
-			let hash = try BCrypt.hash(user.password)
-			return User(id: nil, username: user.username, email: user.email, passwordHash: hash)
-				.save(on: req)
+			return User.query(on: req).filter(\.email == user.email).first().flatMap { existingUser in
+				guard existingUser == nil else {
+					throw Abort(.badRequest, reason: "a user with this email already exists.")
+				}
+
+				let hash = try BCrypt.hash(user.password)
+
+				return User(id: nil, username: user.username, email: user.email, passwordHash: hash)
+					.save(on: req)
+				}
 			}.map { user in
 				return try UserResponse(id: user.requireID(), username: user.username, email: user.email)
-		}
+			}
 	}
 }
