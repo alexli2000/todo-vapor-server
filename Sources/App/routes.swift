@@ -29,4 +29,9 @@ public func routes(_ router: Router) throws {
     bearer.get("subtasks", use: subtaskController.index)
     bearer.post("subtasks", use: subtaskController.create)
     bearer.delete("subtasks", Subtask.parameter, use: subtaskController.delete)
+
+	let taskController = TaskController()
+	bearer.get("tasks", use: taskController.index)
+	bearer.post("tasks", use: taskController.create)
+
 }

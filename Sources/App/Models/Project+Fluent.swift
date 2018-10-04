@@ -23,7 +23,7 @@ extension Project: Parameter { }
 extension Project {
 
 	// The tasks in this project
-	var tasks: Children<Project, Task> {
-		return children(\.projectID)
-	}
+//	var tasks: Children<Project, Task> {
+//		return children(\.projectID)
+//	}
 }

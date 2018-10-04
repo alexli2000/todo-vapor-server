@@ -27,9 +27,9 @@ extension Task {
 		return parent(\.creatorID)
 	}
 
-	var project: Parent<Task, Project> {
-		return parent(\.projectID)
-	}
+//	var project: Parent<Task, Project> {
+//		return parent(\.projectID)
+//	}
 
 	// The subtasks belonging to this task
 	var subtasks: Children<Task, Subtask> {

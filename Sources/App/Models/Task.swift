@@ -14,7 +14,7 @@ struct Task: Codable, Hashable {
 	var title: String
 	var createdOn: Date
 	var creatorID: User.ID
-	var projectID: Project.ID
+//	var projectID: Project.ID
 	var dueDate: Date?
 	var progressStatus: TaskProgressStatus.RawValue
 
@@ -22,7 +22,7 @@ struct Task: Codable, Hashable {
 		 title: String,
 		 createdOn: Date,
 		 creatorID: User.ID,
-		 projectID: Project.ID,
+//		 projectID: Project.ID,
 		 dueDate: Date?,
 		 progressStatus: TaskProgressStatus = .toDo)
 	{
@@ -30,7 +30,7 @@ struct Task: Codable, Hashable {
 		self.title = title
 		self.createdOn = createdOn
 		self.creatorID = creatorID
-		self.projectID = projectID
+//		self.projectID = projectID
 		self.dueDate = dueDate
 		self.progressStatus = progressStatus.rawValue
 	}
